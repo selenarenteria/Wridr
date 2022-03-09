@@ -1,8 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content%}
-    <h1>ALL POSTS</h1>
-{% for post in posts%}
-<p>{{ post.title}}</p>
-{% endfor %}    
-{% endblock %}
+<h1 class="title pt-5">All Posts</h1>
+<div class="gallery">
+    {% for post in posts %}
+    <a href="">
+        <div class="card">
+            <div class="card-image">
+                <figure class="image is-square">
+                    <img src="{{post.image}}" alt="{{post.body_text}}" />
+                </figure>
+            </div>
+            <div class="card-header">
+                <p class="card-header-title">{{post.title}}</p>
+            </div>
+        </div>
+    </a>
+    {% empty %}
+    <article class="message">
+        <div class="message-header">
+            <p>No Posts Available</p>
+        </div>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}    
+
+
+
