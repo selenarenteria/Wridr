@@ -44,6 +44,8 @@ class AllPost(TemplateView):
         print(name)
         if name != None:
             context['posts'] = Post.objects.filter(title__icontains=name)
+            context['header'] = f"Results for: {name}"
         else:    
             context['posts'] = Post.objects.all()
+            context['header'] = "All Posts"
         return context
