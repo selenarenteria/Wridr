@@ -40,11 +40,10 @@ class AllPost(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # context['posts'] = posts
-        title = self.request.GET.get("title")
-        print(title)
-        if title != None:
-            context['posts'] = Post.objects.filter(title__icontains=title)
+        name = self.request.GET.get("title")
+        print(name)
+        if name != None:
+            context['posts'] = Post.objects.filter(title__icontains=name)
         else:    
             context['posts'] = Post.objects.all()
         return context
-
