@@ -15,7 +15,7 @@
 </form>
 <div class="gallery">
     {% for post in posts %}
-    <a href="">
+    <a href="{% url 'post_detail' post.pk%}">
         <div class="card-header">
             <p class="card-header-title">{{post.title}}</p>
         </div>
