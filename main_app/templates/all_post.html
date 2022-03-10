@@ -2,6 +2,17 @@
 
 {% block content%}
 <h1 class="title pt-5">All Posts</h1>
+<form class="mb-5" method="get">
+    <div class="field has-addons">
+        <div class="control">
+            <input class="input" type="text" title="title" placeholder="title" />   
+        </div>
+        <div class="control">
+            <input class="button is-success" type="submit" value="Search" />
+        </div>
+    </div>
+    <a class="button is-light" href="{% url 'all_post' %}">Clear Search</a>
+</form>
 <div class="gallery">
     {% for post in posts %}
     <a href="">
