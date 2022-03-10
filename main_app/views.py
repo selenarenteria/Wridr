@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic.base import TemplateView 
 from django.views.generic.edit import CreateView
+from django.views.generic import DetailView
 from django.http import HttpResponse
 from .models import Post 
 
@@ -56,3 +57,8 @@ class CreatePost(CreateView):
     fields = ['title', 'image', 'body_text']
     template_name = 'create_post.html'
     success_url = '/posts/'
+
+
+class PostDetail(DetailView):
+    model = Post
+    template_name = "post_detail.html"
