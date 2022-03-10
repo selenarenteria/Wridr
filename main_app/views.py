@@ -2,6 +2,7 @@ from poplib import POP3_SSL_PORT
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.base import TemplateView 
+from django.views.generic.edit import CreateView
 from django.http import HttpResponse
 from .models import Post 
 
@@ -49,3 +50,9 @@ class AllPost(TemplateView):
             context['posts'] = Post.objects.all()
             context['header'] = "All Posts"
         return context
+
+class CreatePost(CreateView):
+    model = Post
+    fields = ['title', 'image', 'body_text']
+    template_name = 'create_post.html'
+    success_url = '/posts/'
