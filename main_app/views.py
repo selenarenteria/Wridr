@@ -5,7 +5,8 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.http import HttpResponse
-from .models import Post 
+from .models import Post, Comment 
+from django.shortcuts import redirect 
 
 # STATIC DATA
 # Class
@@ -73,5 +74,15 @@ class DeletePost(DeleteView):
     model = Post
     template_name = 'delete_post_confirmation.html'
     success_url = '/posts/'
+
+# class LeaveComment(View):
+#     def post(self, request, pk):
+#         comment_text = request.post.get("comment_text")
+#         post = Post.objects.get(pk=pk)
+#         Comment.objects.create(comment_text=comment_text, post=post)
+#         return redirect('all_post', pk=pk)
+
+
+
 
 
