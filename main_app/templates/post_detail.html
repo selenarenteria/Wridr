@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
+
 {% block content %}
+
 <h1 class="title">Post detail page </h1>
 <p>{{ post.title }}</p>
 <img src="{{ post.image }}" alt="Post image - {{post.title}}"/>
 <p>{{ post.body_text }}</p>
+<div class="detail__container">
+    <div class="buttons">
+        <a href="{% url 'delete_post' post.pk %}" class="button is-info">Delete</a>
+        <a href="{% url 'update_post' post.pk %}" class="button is-info">
+        Update</a>
+       <a href="{% url 'all_post' %}" class="button is-info">All Posts</a> 
+    </div>
+</div>
 
-<div><a href="{% url 'all_post' %}">Back to All Posts</a></div>
 {% endblock %}

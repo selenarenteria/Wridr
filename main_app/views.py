@@ -2,7 +2,7 @@ from poplib import POP3_SSL_PORT
 from django.shortcuts import render
 from django.views import View
 from django.views.generic.base import TemplateView 
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import DetailView
 from django.http import HttpResponse
 from .models import Post 
@@ -62,3 +62,16 @@ class CreatePost(CreateView):
 class PostDetail(DetailView):
     model = Post
     template_name = "post_detail.html"
+
+class UpdatePost(UpdateView):
+    model = Post
+    fields = ['title', 'image', 'body_text']
+    template_name = 'update_post.html'
+    success_url = '/posts/'
+
+class DeletePost(DeleteView):
+    model = Post
+    template_name = 'delete_post_confirmation.html'
+    success_url = '/posts/'
+
+
