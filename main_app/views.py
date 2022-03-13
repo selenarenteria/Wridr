@@ -75,12 +75,12 @@ class DeletePost(DeleteView):
     template_name = 'delete_post_confirmation.html'
     success_url = '/posts/'
 
-# class LeaveComment(View):
-#     def post(self, request, pk):
-#         comment_text = request.post.get("comment_text")
-#         post = Post.objects.get(pk=pk)
-#         Comment.objects.create(comment_text=comment_text, post=post)
-#         return redirect('all_post', pk=pk)
+class LeaveComment(View):
+    def post(self, request, pk):
+        comment_text = request.POST.get("comment_text")
+        post = Post.objects.get(pk=pk)
+        Comment.objects.create(comment_text=comment_text, post=post)
+        return redirect('post_detail', pk=pk)
 
 
 
