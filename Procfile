@@ -1,1 +1,1 @@
-web: gunicorn Wridr.wsgi
+web: gunicorn wridr_project.wsgi
