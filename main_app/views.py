@@ -7,21 +7,15 @@ from django.views.generic import DetailView
 from django.http import HttpResponse
 from .models import Post, Comment 
 from django.shortcuts import redirect 
+from django.urls import reverse
 
-# STATIC DATA
-# Class
-# class Post:
-#     def __init__(self, title, image, body_text):
-#          self.title=title
-#          self.image=image
-#          self.body_text=body_text
+# imports related to signup
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
-
-# Seed data 
-# posts = [
-#     Post("SUGA day!", "https://i.imgur.com/eFmSPh9.jpeg", "Today is SUGA also known as Min Yoongi from BTS's birthday!!!"),
-#     Post("SOPE appreciation post", "https://i.imgur.com/KQIPsCJs.jpeg", "SOPE is the best duo in BTS!")
-# ]
+# authorization decorators
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 # Create your views here.
 
 class Home(TemplateView):
@@ -31,12 +25,7 @@ class Home(TemplateView):
     
 
 
-class Default(TemplateView):
-    template_name="default.html"
-    # def get(self, request):
-    #     return HttpResponse("This is the default page")
-
-
+@method_decorator(login_required, name="dispatch")
 class AllPost(TemplateView):
     template_name="all_post.html"
 
@@ -46,10 +35,10 @@ class AllPost(TemplateView):
         name = self.request.GET.get("title")
         print(name)
         if name != None:
-            context['posts'] = Post.objects.filter(title__icontains=name)
+            context['posts'] = Post.objects.filter(title__icontains=name, user=self.request.user)
             context['header'] = f"Results for: {name}"
         else:    
-            context['posts'] = Post.objects.all()
+            context['posts'] = Post.objects.filter(user=self.request.user)
             context['header'] = "All Posts"
         return context
 
@@ -58,6 +47,13 @@ class CreatePost(CreateView):
     fields = ['title', 'image', 'body_text']
     template_name = 'create_post.html'
     success_url = '/posts/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CreatePost, self).form_valid(form)
+
+    def get_success_url(self):
+        return reverse('post_detail', kwargs={'pk': self.object.pk})   
 
 
 class PostDetail(DetailView):
@@ -82,7 +78,22 @@ class LeaveComment(View):
         Comment.objects.create(comment_text=comment_text, post=post)
         return redirect('post_detail', pk=pk)
 
+class Signup(View):
+    def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "registration/signup.html", context)
 
+    def post(self, request):
+        form = UserCreationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('all_post')
+        else:
+            context={"form": form}
+            return render(request, "registration/signup.html", context)    
 
 
 
