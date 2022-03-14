@@ -1,5 +1,6 @@
 from unicodedata import name
-from django.urls import path 
+from django.urls import path
+
 from . import views 
 
 urlpatterns = [
@@ -10,5 +11,6 @@ urlpatterns = [
     path('posts/<int:pk>/update', views.UpdatePost.as_view(), name="update_post"),
     path('posts/<int:pk>/delete', views.DeletePost.as_view(), name="delete_post"),
     path('posts/<int:pk>/comments/new', views.LeaveComment.as_view(), name="leave_comment"),
-    path('accounts/signup', views.Signup.as_view(), name="signup")
+    path('accounts/signup', views.Signup.as_view(), name="signup"),
+    # path('feed/rss', views.PostFeed(), name="latest_feed")
 ]

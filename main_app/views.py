@@ -9,6 +9,10 @@ from .models import Post, Comment
 from django.shortcuts import redirect 
 from django.urls import reverse
 
+# imports related to feed
+from django.contrib.syndication.views import Feed
+from main_app.models import Post
+
 # imports related to signup
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -20,8 +24,15 @@ from django.utils.decorators import method_decorator
 
 class Home(TemplateView):
     template_name="home.html"
-    # def get(self, request):
-    #     return HttpResponse("Selena Welcome Home!")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context['posts'] = posts
+        
+        context['posts'] = Post.objects.order_by("-created_at")[:5]
+        context['header'] = "Latest Post"
+        return context
+
+
     
 
 
@@ -75,7 +86,7 @@ class LeaveComment(View):
     def post(self, request, pk):
         comment_text = request.POST.get("comment_text")
         post = Post.objects.get(pk=pk)
-        Comment.objects.create(comment_text=comment_text, post=post)
+        Comment.objects.create(comment_text=comment_text, post=post, user=self.request.user)
         return redirect('post_detail', pk=pk)
 
 class Signup(View):
@@ -95,5 +106,16 @@ class Signup(View):
             context={"form": form}
             return render(request, "registration/signup.html", context)    
 
+class PostFeed(Feed):
+    title = "My posts"
+    link= ""
+    description_template= "all_post.html"
 
+    def items(self):
+        return Post.objects.order_by('created_at')[:5]
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['foo'] = 'bar'
+        return context
 
