@@ -17,7 +17,9 @@
     {% for comment in post.comments.all %}
     <div class="comment">
         <span>{{forloop.counter}}</span>
+        <span><small>{{comment.user}}:</small></span>
         <span><b>{{comment.comment_text}}</b></span>
+        
     </div>
         {% empty %}
 <article class="message">

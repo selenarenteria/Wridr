@@ -1,9 +1,22 @@
 {% extends 'base.html' %}
 
 {% block content%}
-    <h1>Wridr Home</h1>
-   {% for post in posts%}
-   <p>{{post.title}}</p>
-   
-   {% endfor %}
+<h1 class="title pt-5">{{ header }}</h1>
+  <div class="gallery">
+        {% for post in posts %}
+        <a href="{% url 'post_detail' post.pk%}">
+            <div class="card">
+                <div class="card-header">
+                    <p class="card-header-title">{{post.title}}</p>
+                </div>
+                <div class="card-image">
+                  <figure class="image is-5by4">
+                    <img src="{{post.image}}" alt="{{post.body_text}}"/>
+                    </figure>
+                </div>
+                <p><small>post by:{{post.user}}</small></p> 
+            </div>
+        </a>
+{% endfor %}
 {% endblock %}    
+ 

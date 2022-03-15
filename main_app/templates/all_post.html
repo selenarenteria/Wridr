@@ -14,19 +14,20 @@
     <a class="button is-light" href="{% url 'all_post' %}">Clear Search</a>
 </form>
 <div class="gallery">
-    {% for post in posts %}
-    <a href="{% url 'post_detail' post.pk%}">
+{% for post in posts %}
+<a href="{% url 'post_detail' post.pk%}">
+    <div class="card">
         <div class="card-header">
             <p class="card-header-title">{{post.title}}</p>
         </div>
+        <div class="card-image">
+          <figure class="image is-5by4">
+            <img src="{{post.image}}" alt="{{post.body_text}}"/>
+            </figure>
         </div>
-            <div class="card">
-            <div class="card-image">
-                <figure class="image is-square">
-                    <img src="{{post.image}}" alt="{{post.body_text}}" />
-                </figure>
-             
-        </div>
+        
+    </div>
+</a>
     </a>
     {% empty %}
     <article class="message">
@@ -35,6 +36,7 @@
         </div>
     </article>
     {% endfor %}
+    </div>
 </div>
 {% endblock %}    
 

@@ -53,6 +53,7 @@ class AllPost(TemplateView):
             context['header'] = "All Posts"
         return context
 
+@method_decorator(login_required, name="dispatch")
 class CreatePost(CreateView):
     model = Post
     fields = ['title', 'image', 'body_text']
@@ -106,16 +107,20 @@ class Signup(View):
             context={"form": form}
             return render(request, "registration/signup.html", context)    
 
-class PostFeed(Feed):
-    title = "My posts"
-    link= ""
-    description_template= "all_post.html"
 
-    def items(self):
-        return Post.objects.order_by('created_at')[:5]
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['foo'] = 'bar'
-        return context
+
+#  (phase 2 rss feature)
+# class PostFeed(Feed):
+#     title = "My posts"
+#     link= ""
+#     description_template= "all_post.html"
+
+#     def items(self):
+#         return Post.objects.order_by('created_at')[:5]
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         context['foo'] = 'bar'
+#         return context
 
