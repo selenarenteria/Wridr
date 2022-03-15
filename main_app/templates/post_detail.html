@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div class="post-detail">
+    <div class="container-post">
+        <h1 class="title">Post detail page </h1>
+        <p>{{ post.title }}</p>
+        <img src="{{ post.image }}" alt="Post image - {{post.title}}"/>
+        <p>{{ post.body_text }}</p>
+    </div>
 
-<h1 class="title">Post detail page </h1>
-<p>{{ post.title }}</p>
-<img src="{{ post.image }}" alt="Post image - {{post.title}}"/>
-<p>{{ post.body_text }}</p>
+</div>
 
 <div class="comment-container mb-5">
     <h3 class="title is-4">Comments</h3>
