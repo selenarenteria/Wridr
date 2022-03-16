@@ -14,8 +14,6 @@ consist of a title, image, body_text, created_at, and a user.
 >Comment model:
 consist of inheriting the post model. Also using comment_text and user attributes.
 
-## MVP
->
 ## User stories
 >As a user, when the app is open they will see a Latest Post page, that will show the latest post of user's.
 
