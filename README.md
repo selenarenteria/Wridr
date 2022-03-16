@@ -2,9 +2,10 @@
 >Howdy! Welcome to Wridr 🤠 and interactive blog posting app. Where the user is able to sign up, create, edit, and delete a post. Also the user is able to leave a comment on another user's post.
 
 # Technologies Used
->Used Django for frontend and also backend.
+>Used Django framework for frontend and also backend.
 >Database used : PosgresSQL
 >CSS styling with Bulma.
+>Python
 
 ## Backend Models
 >Post model:
@@ -29,5 +30,10 @@ I would like for the user to be able to delete their comment.
 I would like for the user to have a profile and avatar showing on their page. 
 I would like for the user to be able to delete their account along with their content.
 
+## Original Wireframes
+![44D52CC5-0350-4816-BB13-4DCE204015FD](https://media.git.generalassemb.ly/user/40837/files/5126c680-9e0a-11ec-85d1-4d1a845c7d13)
 
+![52A2F880-3DB7-4503-857E-6F1371B52F90](https://media.git.generalassemb.ly/user/40837/files/977c2580-9e0a-11ec-8317-fcf456c3aa5b)
+
+![71865FC4-7F8D-4F80-BE14-64F3BD662313](https://media.git.generalassemb.ly/user/40837/files/a6fb6e80-9e0a-11ec-99ed-b759b2bdf687)
 
