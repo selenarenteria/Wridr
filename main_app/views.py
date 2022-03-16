@@ -10,8 +10,8 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 # imports related to feed
-from django.contrib.syndication.views import Feed
-from main_app.models import Post
+# from django.contrib.syndication.views import Feed
+# from main_app.models import Post
 
 # imports related to signup
 from django.contrib.auth import login
@@ -28,7 +28,7 @@ class Home(TemplateView):
         context = super().get_context_data(**kwargs)
         # context['posts'] = posts
         
-        context['posts'] = Post.objects.order_by("-created_at")[:5]
+        context['posts'] = Post.objects.order_by("-created_at")[:10]
         context['header'] = "Latest Post"
         return context
 
@@ -89,6 +89,7 @@ class LeaveComment(View):
         post = Post.objects.get(pk=pk)
         Comment.objects.create(comment_text=comment_text, post=post, user=self.request.user)
         return redirect('post_detail', pk=pk)
+    
 
 class Signup(View):
     def get(self, request):

@@ -3,7 +3,6 @@
 {% block content %}
 <div class="post-detail">
     <div class="container-post">
-        <h1 class="title">Post detail page </h1>
         <p>{{ post.title }}</p>
         <img src="{{ post.image }}" alt="Post image - {{post.title}}"/>
         <p>{{ post.body_text }}</p>
@@ -18,13 +17,22 @@
     <input type="text" name="comment_text" placeholder="leave a comment" required />  
     <input type="submit" value="Leave Comment" />
 </form>
-    {% for comment in post.comments.all %}
+{% for comment in post.comments.all %}
     <div class="comment">
         <span>{{forloop.counter}}</span>
         <span><small>{{comment.user}}:</small></span>
         <span><b>{{comment.comment_text}}</b></span>
         
     </div>
+    <h1>Are you sure you want to delete this {{comment.comment_text}} ?</h1> 
+<div class="delete-container">
+  <form method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Confirm Delete" class="button is-info"/>
+    <a href="{% url 'post_detail' post.pk %}" class="button is-info">Back</a> 
+</form>
+            
+</div>
         {% empty %}
 <article class="message">
     <div class="message-header">
