@@ -62,3 +62,4 @@ I would like for the user to be able to delete their account along with their co
 ###
 >Shout out to Addy Rodriguez for helping me come up with my app's name. 
 https://github.com/AddyRdz
+Royalties will be sent accordingly 
