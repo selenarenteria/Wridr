@@ -14,6 +14,8 @@ consist of a title, image, body_text, created_at, and a user.
 >Comment model:
 consist of inheriting the post model. Also using comment_text and user attributes.
 
+## MVP
+>
 ## User stories
 >As a user, when the app is open they will see a Latest Post page, that will show the latest post of user's.
 
@@ -37,3 +39,26 @@ I would like for the user to be able to delete their account along with their co
 
 ![71865FC4-7F8D-4F80-BE14-64F3BD662313](https://media.git.generalassemb.ly/user/40837/files/a6fb6e80-9e0a-11ec-99ed-b759b2bdf687)
 
+## Wireframes
+
+### Latest Post
+<img width="1414" alt="Screen Shot 2022-03-15 at 9 34 59 PM" src="https://user-images.githubusercontent.com/95322104/158505621-e4b7b768-7203-430f-8ded-4f7e5483c4a6.png">
+
+### Log in 
+<img width="1367" alt="Screen Shot 2022-03-15 at 9 43 26 PM" src="https://user-images.githubusercontent.com/95322104/158506579-4c53dcce-2983-468b-8633-52954a9851d8.png">
+
+### Sign up
+<img width="1398" alt="Screen Shot 2022-03-15 at 9 48 11 PM" src="https://user-images.githubusercontent.com/95322104/158506812-c74490ec-6112-4592-9a96-b59a3985c914.png">
+
+### All Posts
+<img width="1420" alt="Screen Shot 2022-03-15 at 9 51 21 PM" src="https://user-images.githubusercontent.com/95322104/158507190-2f3fe61f-01f4-4e18-a57c-4e4003748d39.png">
+
+### Created Post & Comment Section
+<img width="1259" alt="Screen Shot 2022-03-15 at 10 03 18 PM" src="https://user-images.githubusercontent.com/95322104/158508501-28f0aabb-462a-4bac-bbb0-6e4a49ef099a.png">
+
+### Creating Blog Post 
+<img width="884" alt="Screen Shot 2022-03-15 at 10 07 00 PM" src="https://user-images.githubusercontent.com/95322104/158508858-fd1d7844-bc12-47c0-ac1f-a971888f767f.png">
+
+###
+>Shout out to Addy Rodriguez for helping me come up with my app's name. 
+https://github.com/AddyRdz
